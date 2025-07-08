@@ -1,5 +1,7 @@
-chika : survey of programming language:   90
-chika
-chika : math:   70
-chika : math:   70
-chika : physics:   90
+============================STUDENT MANAGMENT SYSTEM=======================
+
+student name : CHIKA EXCEL OJI
+  MATH: 5
+  NMA: 90
+  SPL: 85
+  DATA STRUCTURE: 99
