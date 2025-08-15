@@ -1,7 +1,3 @@
-============================STUDENT MANAGMENT SYSTEM=======================
-
-student name : CHIKA EXCEL OJI
-  MATH: 5
-  NMA: 90
-  SPL: 85
-  DATA STRUCTURE: 99
+student name : chika
+  nma: 99
+  french: 90
