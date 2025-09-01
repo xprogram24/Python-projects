@@ -21,14 +21,17 @@ class Student:
         self.score = score
         self.course_name = course_name
 
-    def save_to_db(self, courses):
+    def save_to_db(self):
             for course, score in courses.items():
                 save = "INSERT INTO student (name, course ,score) VALUES (%s,%s,%s)"
                 cursor.execute(save,(self.name,course,score))
             mydb.commit()
             
-
-
+    def update_score(self, name, course_name, new_score):
+        update_Query = "UPDATE student SET score = %s WHERE name = %s and course = %s "
+        cursor.execute(update_Query,(new_score,name,course_name))
+        mydb.commit()
+        print(f"course {course_name} successfully updated to {new_score}")
 
 
 
@@ -38,8 +41,6 @@ class Student:
 
 
 courses = {}
-Student_obj = None
-
 # while loop to display menu
 while True:
     print("===== Welcome to E-SMS =====")
@@ -66,8 +67,24 @@ while True:
         print(f"Current courses: {courses}")
         
     #update score section would be implemented
-    if choice == "2":
-         pass
+    elif choice == "2":
+        
+        
+        cursor.execute("SELECT * FROM student")
+        record = cursor.fetchall()
+        if not record:
+            print("no courses availble to update")
+            
+        else:
+            print("Courses available for update:")
+            for row in record:
+                print(row)
+
+            name = input("Enter student name: ")
+            course_name = input("Enter the course you want to update: ")
+            new_score = input("Enter the new score: ")
+            Student_obj = Student(name, course_name,new_score)
+            Student_obj.update_score(name, course_name, new_score)
 
 
     #to display stsudent in db

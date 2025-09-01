@@ -77,3 +77,27 @@ while True:
 
     else:
         print("Invalid choice. Please try again.")
+
+
+
+        displayStudent = "SELECT * FROM student"
+        cursor.execute(displayStudent)
+
+        result = cursor.fetchall()
+
+
+        """if not courses:
+            print("no courses availble to update")
+            continue"""
+
+        print("Courses available for update:")
+        for items in result:
+            print(items)
+
+        name = input("Enter student name: ")
+        course_name = input("Enter the course you want to update: ")
+        new_score = input("Enter the new score: ")
+        update_Query = "UPDATE student SET score = %s WHERE name = %s and course = %s "
+        cursor.execute(update_Query,(new_score,name,course_name))
+        mydb.commit()
+        Student_obj.update_score(course_name, new_score, courses)
