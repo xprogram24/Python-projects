@@ -1,4 +1,3 @@
-#add try catch to gracefully catch error
 import pymysql
 
 from tabulate import tabulate
@@ -20,7 +19,6 @@ def generate_bill():
     query = "SELECT customer_id FROM Customer WHERE meter_number = %s"
     mycursor.execute(query,meter_number)
 
-#ADD an if statement to check if meter number exists
     customers = mycursor.fetchone()
     
     customer_id = customers[0]
@@ -41,11 +39,8 @@ def generate_bill():
 
    
 generate_bill()
-def updatebill():
 
-    pass
 def view_bills():
-    #add an if to check if meter number exist
     Meter_Nnumber = input("input meter Number: ")
     searchQuery = "SELECT Customer.customer_id, Customer.fullName, Customer.meter_number, Bills.bill_id, Bills.billing_month, Bills.units_used, Bills.rate_per_unit, Bills.total_amount FROM Bills INNER JOIN  Customer ON Bills.customer_id = Customer.customer_id WHERE Customer.meter_number = %s"
     mycursor.execute(searchQuery,Meter_Nnumber)

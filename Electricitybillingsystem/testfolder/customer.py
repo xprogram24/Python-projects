@@ -26,10 +26,7 @@ def addCustomer():
 
    mydb.commit() 
 
-   customers = mycursor.fetchall()
-   for customer in  customers:
-        print(customer) 
-
+  
 #addCustomer()
 
 # function to view customers
