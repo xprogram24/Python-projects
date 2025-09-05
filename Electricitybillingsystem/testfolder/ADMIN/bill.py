@@ -42,7 +42,7 @@ def generate_bill():
    
 generate_bill()
 def updatebill():
-
+    #still contemplating
     pass
 def view_bills():
     #add an if to check if meter number exist

@@ -58,8 +58,8 @@ def bill_menu():
 
 def payment_managment():
     print("\n======payment management======")
-    print("1.payment record")
-    print("2.Tracking pending/unpaid bills")
+    print("1.view payment ")
+    print("2.Tracking pending/unpaid bills")#optional
     print("3.Generate reciepts(PDF)")
     print("4 exit payment managment")
 
