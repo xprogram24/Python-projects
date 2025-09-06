@@ -45,6 +45,6 @@ def view_bills():
     searchQuery = "SELECT Customer.customer_id, Customer.fullName, Customer.meter_number, Bills.bill_id, Bills.billing_month, Bills.units_used, Bills.rate_per_unit, Bills.total_amount FROM Bills INNER JOIN  Customer ON Bills.customer_id = Customer.customer_id WHERE Customer.meter_number = %s"
     mycursor.execute(searchQuery,Meter_Nnumber)
     customers = mycursor.fetchall()
-    header = ["Customer_id","Full Name","Meter number", "Bill ID","Billing Month","units_used","Rate","Total Amount (#)"]
+    header = ["Customer_id","Full Name","Meter number", "Bill ID","Billing Month","units_used","Rate","Total Amount (₦)"]
     print(tabulate(customers,headers=header, tablefmt="fancy_grid"))
 view_bills()

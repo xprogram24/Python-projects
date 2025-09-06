@@ -11,8 +11,7 @@ mydb = pymysql.connect(
 mycursor = mydb.cursor()
 print("connection successful")
 
-def account_info():
-    pass
+
 
 
 def menu():
