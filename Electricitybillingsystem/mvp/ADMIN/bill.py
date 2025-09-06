@@ -32,7 +32,7 @@ def generate_bill():
     total_amount = bill + VAT
     print(f"bill is {bill}")
     print(f"total bill + vat is {total_amount}")
-    bill_query = "INSERT INTO Bills (customer_id, units_used, rate_per_unit, total_amount, billing_month) VALUES (%s,%s,%s,%s,%s)"
+    bill_query = "INSERT INTO Bills (customer_id, units_used, rate_per_unit, total_amount, billing_month,) VALUES (%s,%s,%s,%s,%s)"
     mycursor.execute(bill_query,(customer_id,unit,rate,total_amount,billing_month))
     mydb.commit()
     print(f"✅ Bill generated for {meter_number} | Amount: ₦{total_amount} ")
