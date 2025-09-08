@@ -2,6 +2,9 @@
 
 import pymysql
 from customer import addCustomer,viewCustomer , updateCustomer
+from bill import generate_bill,view_bills,updatebill
+from payment import view_payment
+
 mydb = pymysql.connect(
     host="localhost",
     port=3306,
@@ -14,14 +17,17 @@ mydb = pymysql.connect(
 mycursor = mydb.cursor()
 print("db connected to successfully")
 
+
+#function to display customer menu
 def customer_menu():
-    print("\n======customer management======")
-    print("1.Add new customers")
-    print("2.update a customers information")
-    print("3.view all customers")
-    print("4 exit customer managment")
 
     while True:
+        print("\n======customer management======")
+        print("1.Add new customers")
+        print("2.update a customers information")
+        print("3.view all customers")
+        print("4 exit customer managment")
+
         option = input("\nselect an option: ")
         if option == "1":
             addCustomer()
@@ -35,38 +41,52 @@ def customer_menu():
         else:
             print("invalid")
 
+#function to display bill menu
 def bill_menu():
-    print("\n======Billing management======")
-    print("1.Generate bills for each customer")
-    print("2.update bills if mistakes happen")
-    print("3.view all bills")
-    print("4 exit billing managment")
+    
 
     while True:
+
+        print("\n======Billing management======")
+        print("1.Generate bills for each customer")
+        print("2.update bills if mistakes happen")
+        print("3.view all bills")
+        print("4 exit billing managment")
+
         option = input("\nselect an option: ")
         if option == "1":
             print("generate bills ")
+            generate_bill()
         elif option == "2":
             print("update bill")
+            #still working on it
         elif option == "3":
-            print("view all bills")
+            
+            view_bills()
         elif option == '4':
             print("thank you for using bill managment")
             break
         else:
             print("invalid")
 
+
+
+#function to display payment menu
 def payment_managment():
-    print("\n======payment management======")
-    print("1.payment record")
-    print("2.Tracking pending/unpaid bills")
-    print("3.Generate reciepts(PDF)")
-    print("4 exit payment managment")
+    
 
     while True:
+
+        print("\n======payment management======")
+        print("1.view payment ")
+        print("2.Tracking pending/unpaid bills")#optional
+        print("3.Generate reciepts(PDF)")
+        print("4 exit payment managment")
+
         option = input("\nselect an option: ")
         if option == "1":
             print("payment record")
+            view_payment()
         elif option == "2":
             print("track bills")
         elif option == "3":
@@ -77,15 +97,16 @@ def payment_managment():
         else:
             print("invalid")
 
-
+#function to display report analysis menu
 def analysis():
-    print("\n======Report & Analytics======")
-    print("1.Total revenue collected")
-    print("2.outstanding balance")
-    print("3.monthly usage trend")
-    print("4 exit Report & analytics")
 
     while True:
+        print("\n======Report & Analytics======")
+        print("1.Total revenue collected")
+        print("2.outstanding balance")
+        print("3.monthly usage trend")
+        print("4 exit Report & analytics")
+
         option = input("\nselect an option: ")
         if option == "1":
             print("total revenue")
@@ -99,8 +120,7 @@ def analysis():
         else:
             print("invalid")
 
-#create menu option
-
+# main menu option
 def menu():
     while True:
         print("=====================welcome to E-electricity Admin option===========================")

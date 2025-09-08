@@ -95,7 +95,7 @@ def pay_transfer():
 #payment menu
 def payment_menu():
     print("Select a payment method")
-    print("\n")
+    print("\n") 
     print("1.Pay with card 💳 ")
     print("2.pay with transfer ")
     print("3.EXIT ")
@@ -135,4 +135,3 @@ def payment():
     else:
         print("invalid")
 
-payment()

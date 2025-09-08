@@ -7,7 +7,7 @@ mydb = pymysql.connect(
     password = "mycustomer",
     database="electricBilling_DB"
 )
-
+ 
 mycursor = mydb.cursor()
 print("connection successful")
 

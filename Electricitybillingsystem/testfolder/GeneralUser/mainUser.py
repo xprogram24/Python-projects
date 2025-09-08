@@ -1,5 +1,7 @@
 import pymysql
-
+from accountInfo import accountInfo
+from Billing_info import billing_info
+from payment import payment
 mydb = pymysql.connect(
     host="localhost",
     port=3306,
@@ -27,11 +29,11 @@ def menu():
         choice = input("Enter your choice: ")
 
         if choice == '1':
-            pass
-        elif choice == '2':
-            pass
+            accountInfo()
+        elif choice == '2': 
+            billing_info()
         elif choice == '3':
-            pass
+            payment()
         elif choice == '4':
             pass
         elif choice == '5':

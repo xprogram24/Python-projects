@@ -24,43 +24,48 @@ def addCustomer():
 
    mycursor.execute(addCustomer_query, (fullname,meterNumber,address,phoneNumber,email)) 
 
-   mydb.commit() 
+   mydb.commit()
+   print("user creation successfull")
 
   
 #addCustomer()
 
 # function to view customers
 def viewCustomer():
-    print("1.Search a customer by meter number")
-    print("2.view all customers")
-    print("3.Exit")
-    option = input("\nselect an option")
+    while True:
+        print("1.Search a customer by meter number")
+        print("2.view all customers")
+        print("3.Exit")
+        option = input("\nselect an option: ")
 
-    if option == "1":
-        search = input("input meter Number: ")
-        searchQuery = "SELECT * FROM Customer WHERE meter_number LIKE %s"
-        mycursor.execute(searchQuery,("%" + search +"%"))
+        if option == "1":
+            search = input("input meter Number: ")
+            searchQuery = "SELECT * FROM Customer WHERE meter_number LIKE %s"
+            mycursor.execute(searchQuery,("%" + search +"%"))
 
-        customers = mycursor.fetchall()
-        headers = ["customer ID",  "Meter Number","fullname", "Address", "Phone Number", "Email"]
-        print(tabulate(customers,headers=headers, tablefmt="fancy_grid"))
+            customers = mycursor.fetchall()
+            if customers:
+                headers = ["customer ID",  "Meter Number","fullname", "Address", "Phone Number", "Email"]
+                print(tabulate(customers,headers=headers, tablefmt="fancy_grid"))
+            else:
+                print("print customer doesnt exist")
         
 
 
-    elif option == "2":
-        print("list of customers available")
-        viewCustomer_query = "SELECT * FROM Customer"
-        mycursor.execute(viewCustomer_query)
+        elif option == "2":
+            print("list of customers available")
+            viewCustomer_query = "SELECT * FROM Customer"
+            mycursor.execute(viewCustomer_query)
 
-        customers = mycursor.fetchall()
+            customers = mycursor.fetchall()
    
-        headers = ["customer ID",  "Meter Number","fullname", "Address", "Phone Number", "Email"]
-        print(tabulate(customers,headers=headers, tablefmt="fancy_grid"))
+            headers = ["customer ID",  "Meter Number","fullname", "Address", "Phone Number", "Email"]
+            print(tabulate(customers,headers=headers, tablefmt="fancy_grid"))
             
 
-    elif option == "3":
-        print("exiting view customer")
-        return
+        elif option == "3":
+            print("exiting view customer")
+            break
             
             
 #viewCustomer()
