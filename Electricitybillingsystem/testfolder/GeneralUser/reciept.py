@@ -1,13 +1,3 @@
-from datetime import datetime
-
-current_datetime =  datetime.now()
-print(current_datetime)
-day = current_datetime.date()
-
-#fetch bill from meter number
-import time
-from reportlab.lib.pagesizes import letter
-
 
 def generate_reciept():
     print("\t\t\t\t\t\t\tExcel power distribution company (E-PDC) RECIEPT")

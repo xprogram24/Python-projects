@@ -111,8 +111,7 @@ def payment_menu():
         print("invalid")
     
 
-def Generate_bill():
-    pass
+
 
 
 

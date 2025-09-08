@@ -23,7 +23,7 @@ def menu():
         print("\n1.Account Dashboard")
         print("2.Billing info")
         print("3.payment ")
-        print("4.Download Reciept")
+        print("4.Get Reciept")
         print("5.Exit")
 
         choice = input("Enter your choice: ")
