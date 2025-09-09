@@ -89,7 +89,8 @@ def pay_transfer():
     print("processing payment .........")
     time.sleep(3)
     print(f"✅ Bill  for {meter_number} | Amount payed: ₦{amount} Payement succesfull")
-
+    
+   
 
 
 #payment menu
@@ -111,6 +112,8 @@ def payment_menu():
         print("invalid")
     
 
+def my_reciept():
+    pass
 
 
 

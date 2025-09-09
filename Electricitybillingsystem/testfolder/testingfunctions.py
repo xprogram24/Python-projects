@@ -28,4 +28,16 @@ def generate_reciept():
     print(f"\nDate                                                {day}")
     print("--------------------------------------------------------------------------------------------------")
     print("\n                               THANK YOU FOR USING E-Electricity")
-generate_reciept()
+#generate_reciept()
+
+def myMeternumber():
+   global x 
+   x = 15
+   return x
+
+def result():
+    myMeternumber()
+    print(x)
+
+result()
+

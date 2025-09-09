@@ -1,5 +1,7 @@
 
 def generate_reciept():
+    print("enter meter number")
+
     print("\t\t\t\t\t\t\tExcel power distribution company (E-PDC) RECIEPT")
     print("\nYour payment was successful")
     print("--------------------------------------------------------------------------------------------------")
