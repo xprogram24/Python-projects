@@ -39,5 +39,24 @@ def result():
     myMeternumber()
     print(x)
 
-result()
+#filling admin page with data
+import pymysql
+mydb = pymysql.connect(
+    host="localhost",
+    port=3306,
+    user="admin",
+    password = "myadmin",
+    database="electricBilling_DB"
+)
 
+mycursor = mydb.cursor()
+print("connection successful")
+
+query = "INSERT INTO myAdmin (adminName,email) VALUE(%s,%s)"
+values = [("Williams","willy11@yahoo.com"),
+          ("Johnson","jony5k@gmail.com"),
+          ("Excel","cexcel@gmail.com")
+          ]
+mycursor.executemany(query,values)
+mydb.commit()
+print("done")

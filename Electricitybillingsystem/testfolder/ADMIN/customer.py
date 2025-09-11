@@ -40,7 +40,7 @@ def viewCustomer():
 
         if option == "1":
             search = input("input meter Number: ").strip()
-            searchQuery = "SELECT * FROM Customer WHERE meter_number LIKE %s"
+            searchQuery = "SELECT customer_id,meter_number,fullName,address,phoneNumber,email FROM Customer WHERE meter_number LIKE %s"
             mycursor.execute(searchQuery,("%" + search +"%"))
 
             customers = mycursor.fetchall()
@@ -54,7 +54,7 @@ def viewCustomer():
 
         elif option == "2":
             print("list of customers available")
-            viewCustomer_query = "SELECT * FROM Customer"
+            viewCustomer_query = "SELECT customer_id,meter_number,fullName,address,phoneNumber,email FROM Customer"
             mycursor.execute(viewCustomer_query)
 
             customers = mycursor.fetchall()
@@ -74,7 +74,7 @@ def viewCustomer():
 def updateCustomer():
     request = input("\nWhat do you want to change (Fullname , address ,phone number or email): ").strip().lower()
     meterNumber = input("please input meter Number: ").strip()
-    searchQuery = "SELECT * FROM Customer WHERE meter_number LIKE %s"
+    searchQuery = "SELECT customer_id,meter_number,fullName,address,phoneNumber,email FROM Customer WHERE meter_number LIKE %s"
     mycursor.execute(searchQuery, ("%" + meterNumber + "%",))
 
 

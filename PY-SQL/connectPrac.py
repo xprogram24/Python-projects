@@ -4,7 +4,7 @@ connection = pymysql.connect(
     host="localhost",
     port=3306,
     user="root",
-    password="09155564452",
+    password="09155564452", 
     database="mydatabase"
 )
 

@@ -33,7 +33,7 @@ def addCustomer():
 # function to view customers
 def viewCustomer():
     while True:
-        print("1.Search a customer by meter number")
+        print("\n1.Search a customer by meter number")
         print("2.view all customers")
         print("3.Exit")
         option = input("\nselect an option: ")

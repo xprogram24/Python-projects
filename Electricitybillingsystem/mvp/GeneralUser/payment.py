@@ -122,7 +122,7 @@ def my_reciept():
 
 
 def payment():
-    print("1.pay bills")
+    print("\n1.pay bills")
     print("2.Generate Reciept")
     print("3.Exit")
 

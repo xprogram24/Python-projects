@@ -146,4 +146,3 @@ def menu():
             break
         else :
             print("invalid option")
-menu()

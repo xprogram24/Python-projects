@@ -15,7 +15,7 @@ mycursor = mydb.cursor()
 print("db connected to successfully")
 
 def generate_bill():
-    print("welcome to bill generating")
+    print("\nwelcome to bill generating")
     meter_number = input("please input meter number :").strip()
     
     mycursor.execute("SELECT * FROM Customer WHERE meter_number = %s", (meter_number))

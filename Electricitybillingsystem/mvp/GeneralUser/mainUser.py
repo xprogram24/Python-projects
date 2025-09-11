@@ -18,7 +18,7 @@ print("connection successful")
 
 def menu():
     while True:
-        print("==================== welcome to E-electricity User Menu ===========================")
+        print("\n==================== welcome to E-electricity User Menu ===========================")
         print("please select an option")
         print("\n1.Account Dashboard")
         print("2.Billing info")

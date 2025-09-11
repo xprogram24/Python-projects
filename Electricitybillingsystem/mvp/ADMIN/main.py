@@ -123,7 +123,7 @@ def analysis():
 # main menu option
 def menu():
     while True:
-        print("=====================welcome to E-electricity Admin option===========================")
+        print("\n=====================welcome to E-electricity Admin option===========================")
         print("please select an option")
         print("\n1.Customer managment")
         print("2.Billing managment")
@@ -146,4 +146,3 @@ def menu():
             break
         else :
             print("invalid option")
-menu()
