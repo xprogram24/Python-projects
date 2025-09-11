@@ -16,7 +16,7 @@ print("db connected to successfully")
 
 def generate_bill():
     print("welcome to bill generating")
-    meter_number = input("please input meter number :")
+    meter_number = input("please input meter number :").strip()
     
     mycursor.execute("SELECT * FROM Customer WHERE meter_number = %s", (meter_number))
     result = mycursor.fetchall()
@@ -30,7 +30,7 @@ def generate_bill():
     
         customer_id = customers[0]
 
-        billing_month = input("input billing month: ")
+        billing_month = input("input billing month: ").strip()
         unit = int(input("input unit consumed: "))
         rate = 66.00
     
@@ -57,7 +57,7 @@ def view_bills():
         print("2.View a specific bill")
         print("3.EXIT")
 
-        option = input("select an option: ")
+        option = input("select an option: ").strip()
         if option == "1":
             searchQuery = "SELECT Customer.customer_id, Customer.fullName, Customer.meter_number, Bills.bill_id, Bills.billing_month, Bills.units_used, Bills.rate_per_unit, Bills.total_amount FROM Bills INNER JOIN  Customer ON Bills.customer_id = Customer.customer_id "
             mycursor.execute(searchQuery)
@@ -65,8 +65,8 @@ def view_bills():
             header = ["Customer_id","Full Name","Meter number", "Bill ID","Billing Month","units_used","Rate","Total Amount (#)"]
             print(tabulate(customers,headers=header, tablefmt="fancy_grid"))
     
-        elif option == "2":
-            Meter_Nnumber = input("input meter Number: ")
+        elif option == "2": 
+            Meter_Nnumber = input("input meter Number: ").strip()
             mycursor.execute("SELECT * FROM Customer WHERE meter_number = %s", (Meter_Nnumber))
             result = mycursor.fetchall()
 

@@ -16,11 +16,11 @@ print("db connected to successfully")
 #function to add customer
 addCustomer_query = "INSERT INTO Customer (fullName, meter_number, address, phoneNumber, email) VALUES (%s,%s,%s,%s,%s)"
 def addCustomer():
-   fullname =  input("Please input customers full name: ")
-   meterNumber = input("Input meter number: ")
-   address = input("Customer address: ")
-   phoneNumber = input("Input phone number: ")
-   email = input("Enter the email you would live to use:" )
+   fullname =  input("Please input customers full name: ").strip().lower()
+   meterNumber = input("Input meter number: ").strip()
+   address = input("Customer address: ").strip().lower()
+   phoneNumber = input("Input phone number: ").strip()
+   email = input("Enter the email you would live to use:" ).strip().lower()
 
    mycursor.execute(addCustomer_query, (fullname,meterNumber,address,phoneNumber,email)) 
 
@@ -39,7 +39,7 @@ def viewCustomer():
         option = input("\nselect an option: ")
 
         if option == "1":
-            search = input("input meter Number: ")
+            search = input("input meter Number: ").strip()
             searchQuery = "SELECT * FROM Customer WHERE meter_number LIKE %s"
             mycursor.execute(searchQuery,("%" + search +"%"))
 
@@ -72,8 +72,8 @@ def viewCustomer():
 
 #function to update customer
 def updateCustomer():
-    request = input("\nWhat do you want to change (Fullname , address ,phone number or email): ").lower()
-    meterNumber = input("please input meter Number: ")
+    request = input("\nWhat do you want to change (Fullname , address ,phone number or email): ").strip().lower()
+    meterNumber = input("please input meter Number: ").strip()
     searchQuery = "SELECT * FROM Customer WHERE meter_number LIKE %s"
     mycursor.execute(searchQuery, ("%" + meterNumber + "%",))
 
