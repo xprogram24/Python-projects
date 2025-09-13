@@ -16,7 +16,7 @@ print("connection successful")
 
 
 
-def menu():
+def menu(meter_number):
     while True:
         print("==================== welcome to E-electricity User Menu ===========================")
         print("please select an option")
@@ -29,11 +29,11 @@ def menu():
         choice = input("Enter your choice: ").strip()
 
         if choice == '1':
-            accountInfo()
+            accountInfo(meter_number)
         elif choice == '2': 
-            billing_info()
+            billing_info(meter_number)
         elif choice == '3':
-            payment()
+            payment(meter_number)
         elif choice == '4':
             pass
         elif choice == '5':
