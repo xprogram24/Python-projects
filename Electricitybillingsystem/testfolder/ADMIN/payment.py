@@ -1,6 +1,7 @@
 import pymysql
 import time
 from tabulate import tabulate
+from fpdf import FPDF
 mydb = pymysql.connect(
     host="localhost",
     port=3306,
@@ -20,21 +21,9 @@ def view_payment():
     Header = ["Customer name","METER NUMBER","BILL MONTH","UNIT USED","TOTAL AMOUNT (₦)","MONTH PAYED","DATE ","AMOUNT PAYED (₦)","STATUS"]
     print(tabulate(payment,headers=Header,tablefmt="fancy_grid"))
 
-from fpdf import FPDF
-import pymysql
-import time
-#from tabulate import tabulate
-from datetime import datetime
 
-mydb = pymysql.connect(
-    host="localhost",
-    port=3306,
-    user="customer",
-    password = "mycustomer",
-    database="electricBilling_DB"
-)
 
-mycursor = mydb.cursor()
+
 def generatepdf():
     query = '''SELECT Customer.fullName, Customer.meter_number, Customer.address,
            Bills.billing_month, Bills.units_used, Bills.total_amount,
@@ -91,5 +80,45 @@ def generatepdf():
 
     pdf.output("report.pdf")
     print("saved")
+ 
+
+def tracking():
+    print("1.track paid")
+    print("2.unpaid")
+    print("3.exit")
+
+    selection = input("click option: ")
+    if selection == "1":
+        
+        view_Query = '''SELECT Customer.fullName, Customer.meter_number, 
+                        Bills.billing_month,Bills.units_used,Bills.total_amount,
+                        Bills.payment_STATUS
+                        FROM Customer INNER JOIN Bills ON 
+                        Customer.customer_id = Bills.customer_id 
+                         WHERE Bills.payment_STATUS = "PAYED" '''
+        mycursor.execute(view_Query)
+        customers = mycursor.fetchall()
+        header = ["Full Name","Meter number","Billing Month","units_used","Total Amount (#)","Date","Payment_STATUS"]
+        print(tabulate(customers,headers=header, tablefmt="fancy_grid"))
+      
+  
+    elif selection == "2":
+        view_Query = '''SELECT Customer.fullName, Customer.meter_number, 
+                        Bills.billing_month,Bills.units_used,Bills.total_amount,
+                        Bills.payment_STATUS
+                        FROM Customer INNER JOIN Bills ON 
+                        Customer.customer_id = Bills.customer_id 
+                         WHERE Bills.payment_STATUS = "unpaid" '''
+        mycursor.execute(view_Query)
+        customers = mycursor.fetchall()
+        header = ["Full Name","Meter number","Billing Month","units_used","Total Amount (#)","Date","Payment_STATUS"]
+        print(tabulate(customers,headers=header, tablefmt="fancy_grid"))
+    elif selection == "3":
+        return
+    else:
+        print("invalid")
+
+
+
 
     

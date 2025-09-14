@@ -76,12 +76,45 @@ for customers in customer:
 
 
 
+#tracking paid and unpaid pils
+def tracking():
+    print("1.track paid")
+    print("2.unpaid")
+    print("3.exit")
+
+    selection = input("click option: ")
+    if selection == "1":
+        
+        view_Query = '''SELECT Customer.fullName, Customer.meter_number, 
+                        Bills.billing_month,Bills.units_used,Bills.total_amount,
+                        Bills.payment_STATUS
+                        FROM Customer INNER JOIN Bills ON 
+                        Customer.customer_id = Bills.customer_id 
+                         WHERE Bills.payment_STATUS = "PAYED" '''
+        mycursor.execute(view_Query)
+        customers = mycursor.fetchall()
+        header = ["Full Name","Meter number","Billing Month","units_used","Total Amount (#)","Date","Payment_STATUS"]
+        print(tabulate(customers,headers=header, tablefmt="fancy_grid"))
+      
+  
+    elif selection == "2":
+        view_Query = '''SELECT Customer.fullName, Customer.meter_number, 
+                        Bills.billing_month,Bills.units_used,Bills.total_amount,
+                        Bills.payment_STATUS
+                        FROM Customer INNER JOIN Bills ON 
+                        Customer.customer_id = Bills.customer_id 
+                         WHERE Bills.payment_STATUS = "unpaid" '''
+        mycursor.execute(view_Query)
+        customers = mycursor.fetchall()
+        header = ["Full Name","Meter number","Billing Month","units_used","Total Amount (#)","Date","Payment_STATUS"]
+        print(tabulate(customers,headers=header, tablefmt="fancy_grid"))
+    elif selection == "3":
+        return
+    else:
+        print("invalid")
 
 
-
-
-
-
+tracking()
 
 
 

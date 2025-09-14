@@ -3,8 +3,8 @@
 import pymysql
 from customer import addCustomer,viewCustomer , updateCustomer
 from bill import generate_bill,view_bills,updatebill
-from payment import view_payment
-
+from payment import view_payment,generatepdf,tracking
+import time
 mydb = pymysql.connect(
     host="localhost",
     port=3306,
@@ -88,9 +88,9 @@ def payment_managment():
             print("payment record")
             view_payment()
         elif option == "2":
-            print("track bills")
+            tracking()
         elif option == "3":
-            print("generate reciept")
+            generatepdf()
         elif option == '4':
             print("thank you for using payment managment")
             break
@@ -101,6 +101,7 @@ def payment_managment():
 def analysis():
 
     while True:
+        time.sleep(3)
         print("\n======Report & Analytics======")
         print("1.Total revenue collected")
         print("2.outstanding balance")
@@ -123,7 +124,7 @@ def analysis():
 # main menu option
 def menu():
     while True:
-        print("\n=====================welcome to E-electricity Admin option===========================")
+        print("=====================welcome to E-electricity Admin option===========================")
         print("please select an option")
         print("\n1.Customer managment")
         print("2.Billing managment")

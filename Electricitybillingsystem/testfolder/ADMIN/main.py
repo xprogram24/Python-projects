@@ -3,7 +3,7 @@
 import pymysql
 from customer import addCustomer,viewCustomer , updateCustomer
 from bill import generate_bill,view_bills,updatebill
-from payment import view_payment,generatepdf
+from payment import view_payment,generatepdf,tracking
 import time
 mydb = pymysql.connect(
     host="localhost",
@@ -88,7 +88,7 @@ def payment_managment():
             print("payment record")
             view_payment()
         elif option == "2":
-            print("track bills")
+            tracking()
         elif option == "3":
             generatepdf()
         elif option == '4':
