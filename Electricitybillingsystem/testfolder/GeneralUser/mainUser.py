@@ -2,6 +2,7 @@ import pymysql
 from accountInfo import accountInfo
 from Billing_info import billing_info
 from payment import payment
+from reciept import quer
 mydb = pymysql.connect(
     host="localhost",
     port=3306,
@@ -35,7 +36,7 @@ def menu(meter_number):
         elif choice == '3':
             payment(meter_number)
         elif choice == '4':
-            pass
+            quer(meter_number)
         elif choice == '5':
             print("goodbye")
             break

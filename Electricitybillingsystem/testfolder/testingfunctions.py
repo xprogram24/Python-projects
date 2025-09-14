@@ -10,8 +10,8 @@ from tabulate import tabulate
 mydb = pymysql.connect(
     host="localhost",
     port=3306,
-    user="customer",
-    password = "mycustomer",
+    user="admin",
+    password = "myadmin",
     database="electricBilling_DB"
 )
 
@@ -40,11 +40,11 @@ mycursor = mydb.cursor()
 
 
 
-query = '''SELECT Customer.fullName, Customer.meter_number, Customer.address,
+'''query = SELECT Customer.fullName, Customer.meter_number, Customer.address,
            Bills.billing_month,Bills.units_used,Bills.total_amount,Payments.billing_month,
            Payments.date_of_payment,Payments.amount_paid,Payments.Payment_STATUS FROM Customer 
            INNER JOIN Bills ON Customer.customer_id = Bills.customer_id INNER JOIN Payments ON 
-           Bills.bill_id = Payments.bill_id WHERE meter_number = %s '''
+           Bills.bill_id = Payments.bill_id WHERE meter_number = %s 
 
 meter_number = input("enter meter number")
 
@@ -71,8 +71,7 @@ for customers in customer:
     print(f"\nStatus                                               {customers[9]}")
     print(f"\nDate                                                {customers[7]}")
     print("--------------------------------------------------------------------------------------------------")
-    print("\n                               THANK YOU FOR USING E-Electricity")
-
+    print("\n                               THANK YOU FOR USING E-Electricity")'''
 
 
 

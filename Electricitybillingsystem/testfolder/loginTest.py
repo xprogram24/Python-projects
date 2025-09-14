@@ -29,7 +29,7 @@ import pymysql
 #sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'GeneralUser')))
 # Now you can import modules from 'anotherfolder'
 # Example: from mymodule import myfunction
-from mainUser import menu
+
 
 mydb = pymysql.connect(
     host="localhost",
@@ -78,7 +78,7 @@ def login():
 
             if hased_testpassword == mypassword:
                 print("login succesful")
-                menu()
+                
             else:
                     print("wrong password")
     else:

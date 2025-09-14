@@ -2,7 +2,7 @@ import pymysql
 from accountInfo import accountInfo
 from Billing_info import billing_info
 from payment import payment
-import time
+from reciept import quer
 mydb = pymysql.connect(
     host="localhost",
     port=3306,
@@ -19,8 +19,7 @@ print("connection successful")
 
 def menu(meter_number):
     while True:
-        time.sleep(3)
-        print("\n==================== welcome to E-electricity User Menu ===========================")
+        print("==================== welcome to E-electricity User Menu ===========================")
         print("please select an option")
         print("\n1.Account Dashboard")
         print("2.Billing info")
@@ -37,7 +36,7 @@ def menu(meter_number):
         elif choice == '3':
             payment(meter_number)
         elif choice == '4':
-            pass
+            quer(meter_number)
         elif choice == '5':
             print("goodbye")
             break

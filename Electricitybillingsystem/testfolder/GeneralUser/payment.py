@@ -116,9 +116,6 @@ def generate_reciept(meter_number):
     mycursor.execute(query,meter_number)
     customer = mycursor.fetchone()
 
-    if not customer:
-        print("❌ No payment record found for this meter number.")
-        return
     
     print("\n\n\t\t\tExcel Power Distribution Company (E-PDC) RECEIPT")
     print("=================================================================================")
@@ -138,7 +135,7 @@ def generate_reciept(meter_number):
     print(f"Date of Payment:    {customer[7]}")
     print("---------------------------------------------------------------------------------")
     print("\n\t\tTHANK YOU FOR USING E-Electricity 💡")
-
+    
 
 
 
