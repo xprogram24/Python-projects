@@ -47,9 +47,15 @@ def pay_card(meter_number):
     #query to add the payment to payment table
     bill_Query = "INSERT INTO Payments (bill_id,date_of_payment, amount_paid, payment_method,billing_month,Payment_STATUS ) VALUES (%s,%s,%s,%s,%s,%s)"
     mycursor.execute(bill_Query,(bill_id,current_datetime,amount,"CARD",bill_month,"PAYED"))
+
+    
     mydb.commit()
     print("processing payment .........")
     time.sleep(3)
+    #query that updates status for bill table
+    update_query = "UPDATE Bills SET payment_STATUS = (%s)"
+    mycursor.execute(update_query,("PAYED"))
+    mydb.commit()
     print(f"✅ Bill  for {meter_number} | Amount payed: ₦{amount} Payement succesfull")
     generate_reciept(meter_number)
 
@@ -86,6 +92,9 @@ def pay_transfer(meter_number):
     mycursor.execute(bill_Query,(bill_id,current_datetime,amount,"TRANSFER",bill_month,"PAYED"))
     mydb.commit()
     print("processing payment .........")
+    update_query = "UPDATE Bills SET payment_STATUS = (%s)"
+    mycursor.execute(update_query,("PAYED"))
+    mydb.commit()
     time.sleep(3)
     print(f"✅ Bill  for {meter_number} | Amount payed: ₦{amount} Payement succesfull")
     generate_reciept(meter_number)

@@ -1,5 +1,5 @@
 import pymysql
-
+import time
 from tabulate import tabulate
 mydb = pymysql.connect(
     host="localhost",
@@ -33,6 +33,7 @@ def addCustomer():
 # function to view customers
 def viewCustomer():
     while True:
+        time.sleep(3)
         print("1.Search a customer by meter number")
         print("2.view all customers")
         print("3.Exit")

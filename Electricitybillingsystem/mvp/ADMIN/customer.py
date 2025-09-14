@@ -1,5 +1,5 @@
 import pymysql
-
+import time
 from tabulate import tabulate
 mydb = pymysql.connect(
     host="localhost",
@@ -79,6 +79,7 @@ def updateCustomer():
 
 
     customers = mycursor.fetchall()
+    time.sleep(3)
     headers = ["customer ID",  "Meter Number","fullname", "Address", "Phone Number", "Email"]
     print(tabulate(customers,headers=headers, tablefmt="fancy_grid"))
 

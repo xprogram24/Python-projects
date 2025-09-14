@@ -1,6 +1,6 @@
 #add try catch to gracefully catch error
 import pymysql
-
+import time
 from tabulate import tabulate
 mydb = pymysql.connect(
     host="localhost",
@@ -42,6 +42,7 @@ def generate_bill():
         bill_query = "INSERT INTO Bills (customer_id, units_used, rate_per_unit, total_amount, billing_month,Payment_STATUS) VALUES (%s,%s,%s,%s,%s,'unpaid')"
         mycursor.execute(bill_query,(customer_id,unit,rate,total_amount,billing_month))
         mydb.commit()
+        
         print(f"✅ Bill generated for {meter_number} | Amount: ₦{total_amount} ")
     else:
         print("meter number does not exist")

@@ -4,7 +4,7 @@ import pymysql
 from customer import addCustomer,viewCustomer , updateCustomer
 from bill import generate_bill,view_bills,updatebill
 from payment import view_payment
-
+import time
 mydb = pymysql.connect(
     host="localhost",
     port=3306,
@@ -101,6 +101,7 @@ def payment_managment():
 def analysis():
 
     while True:
+        time.sleep(3)
         print("\n======Report & Analytics======")
         print("1.Total revenue collected")
         print("2.outstanding balance")
