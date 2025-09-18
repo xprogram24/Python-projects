@@ -95,7 +95,7 @@ def tracking():
                         Bills.payment_STATUS
                         FROM Customer INNER JOIN Bills ON 
                         Customer.customer_id = Bills.customer_id 
-                         WHERE Bills.payment_STATUS = "PAYED" '''
+                         WHERE Bills.payment_STATUS = "PAID" '''
         mycursor.execute(view_Query)
         customers = mycursor.fetchall()
         header = ["Full Name","Meter number","Billing Month","units_used","Total Amount (#)","Date","Payment_STATUS"]
