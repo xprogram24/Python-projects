@@ -2,7 +2,7 @@
 
 import pymysql
 from customer import addCustomer,viewCustomer , updateCustomer
-from bill import generate_bill,view_bills,updatebill
+from bill import generate_bill,view_bills,update_bill
 from payment import view_payment,generatepdf,tracking
 import time
 mydb = pymysql.connect(
@@ -58,8 +58,7 @@ def bill_menu():
             print("generate bills ")
             generate_bill()
         elif option == "2":
-            print("update bill")
-            #still working on it
+            update_bill()
         elif option == "3":
             
             view_bills()
@@ -101,7 +100,7 @@ def payment_managment():
 def analysis():
 
     while True:
-        time.sleep(3)
+        time.sleep(1)
         print("\n======Report & Analytics======")
         print("1.Total revenue collected")
         print("2.outstanding balance")
