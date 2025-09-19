@@ -20,15 +20,15 @@ def pay_card(meter_number):
     print("payment through card")
 
     #fetch bill from meter number
-    query = "SELECT  Bills.total_amount FROM Bills JOIN Customer ON Bills.customer_id = Customer.customer_id where meter_number = %s"
+    query = "SELECT  Bills.total_amount , Bills.billing_month FROM Bills JOIN Customer ON Bills.customer_id = Customer.customer_id where meter_number = %s"
     mycursor.execute(query,(meter_number))
     bills = mycursor.fetchone()
     if bills:
-       totalamount,month = bills
-       print(f"bills for month {month} total amount{totalamount}") 
+       totalamount,bill_month = bills
+       print(f"bills for month {bill_month} total amount {totalamount}") 
 
     #card information    
-    bill_month = input("billing month: ").strip().lower()
+    
    
 
     #date and time 
@@ -36,8 +36,8 @@ def pay_card(meter_number):
   
     
 
-    getBill_id = f"SELECT  Bills.bill_id FROM Bills JOIN Customer ON Bills.customer_id = Customer.customer_id where meter_number = {meter_number}"
-    mycursor.execute(getBill_id)
+    getBill_id = "SELECT  Bills.bill_id FROM Bills JOIN Customer ON Bills.customer_id = Customer.customer_id where meter_number = %s "
+    mycursor.execute(getBill_id,meter_number)
 
     mybills = mycursor.fetchone()
     
@@ -54,7 +54,7 @@ def pay_card(meter_number):
         cardNumber = input("\ninput card number: ")
         expirydate = input("input EndDate: ")
         CVC = input("input CVC number: ")
-        amount = input("amount to pay: ").strip()
+        amount = Decimal(input("amount to pay: ").strip())
 
         if amount == totalamount:
             bill_Query = "INSERT INTO Payments (bill_id,date_of_payment, amount_paid, payment_method,billing_month,Payment_STATUS ) VALUES (%s,%s,%s,%s,%s,%s)"
@@ -63,14 +63,15 @@ def pay_card(meter_number):
     
             mydb.commit()
             print("processing payment .........")
-            time.sleep(3)
+            
             #query that updates status for bill table
             update_query = "UPDATE Bills SET payment_STATUS = (%s) WHERE billing_month = %s"
             mycursor.execute(update_query,("PAYED",bill_month))
             mydb.commit()
-            time.sleep(3)
+            time.sleep(2)
             print(f"✅ Bill  for {meter_number} | Amount payed: ₦{amount} Payement succesfull")
             generate_reciept(meter_number)
+
         elif amount < totalamount:
             bill_Query = "INSERT INTO Payments (bill_id,date_of_payment, amount_paid, payment_method,billing_month,Payment_STATUS ) VALUES (%s,%s,%s,%s,%s,%s)"
             mycursor.execute(bill_Query,(bill_id,current_datetime,amount,"CARD",bill_month,"PAYED"))
@@ -107,7 +108,7 @@ def pay_card(meter_number):
 
 
 #payment with transfer
-def pay_transfer(meter_number = "hel225967"):
+def pay_transfer(meter_number):
     print("payment with transfer")
     #fetch bill from meter number
    
