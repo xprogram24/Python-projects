@@ -4,6 +4,7 @@ import pymysql
 from customer import addCustomer,viewCustomer , updateCustomer
 from bill import generate_bill,view_bills,update_bill
 from payment import view_payment,generatepdf,tracking
+from reportAnalysis import Totalrevenue,outstanding_balance,monthly_usage
 import time
 mydb = pymysql.connect(
     host="localhost",
@@ -109,11 +110,11 @@ def analysis():
 
         option = input("\nselect an option: ")
         if option == "1":
-            print("total revenue")
+            Totalrevenue()
         elif option == "2":
-            print("outstanding balance")
+            outstanding_balance()
         elif option == "3":
-            print("monthly usage trends")
+            monthly_usage()
         elif option == '4':
             print("thank you for report & analytics")
             break
