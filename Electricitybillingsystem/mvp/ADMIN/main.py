@@ -75,7 +75,6 @@ try:
     #function to display payment menu
     def payment_managment():
         
-
         while True:
 
             print("\n======payment management======")
@@ -102,7 +101,7 @@ try:
     def analysis():
 
         while True:
-            time.sleep(2)
+            time.sleep(1)
             print("\n======Report & Analytics======")
             print("1.Total revenue collected")
             print("2.outstanding balance")

@@ -79,7 +79,7 @@ def updateCustomer():
 
 
     customers = mycursor.fetchall()
-    time.sleep(3)
+    time.sleep(1)
     headers = ["customer ID",  "Meter Number","fullname", "Address", "Phone Number", "Email"]
     print(tabulate(customers,headers=headers, tablefmt="fancy_grid"))
 

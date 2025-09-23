@@ -13,7 +13,8 @@ mydb = pymysql.connect(
 )
 
 mycursor = mydb.cursor()
-def quer(meter_number ):
+def quer(meter_number):
+    month = input("enter month").lower().strip()
     query = '''SELECT Customer.fullName, Customer.meter_number, Customer.address,
            Bills.billing_month, Bills.units_used, Bills.total_amount,
            Payments.billing_month, Payments.date_of_payment, Payments.amount_paid,
@@ -21,10 +22,10 @@ def quer(meter_number ):
            FROM Customer 
            INNER JOIN Bills ON Customer.customer_id = Bills.customer_id 
            INNER JOIN Payments ON Bills.bill_id = Payments.bill_id 
-           WHERE Customer.meter_number = %s 
+           WHERE Customer.meter_number = %s AND Bills.billing_month = %s 
            ORDER BY Payments.date_of_payment DESC LIMIT 1'''
 
-    mycursor.execute(query,meter_number)
+    mycursor.execute(query,(meter_number,month))
     customer = mycursor.fetchone()
     
     if not customer:

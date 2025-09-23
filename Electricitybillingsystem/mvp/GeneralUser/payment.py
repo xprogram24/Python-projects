@@ -68,7 +68,7 @@ def pay_card(meter_number):
             update_query = "UPDATE Bills SET payment_STATUS = (%s) WHERE billing_month = %s"
             mycursor.execute(update_query,("PAYED",bill_month))
             mydb.commit()
-            time.sleep(2)
+            time.sleep(1)
             print(f"✅ Bill  for {meter_number} | Amount payed: ₦{amount} Payement succesfull")
             generate_reciept(meter_number)
 
@@ -79,12 +79,12 @@ def pay_card(meter_number):
     
             mydb.commit()
             print("processing payment .........")
-            time.sleep(3)
+            time.sleep(1)
             #query that updates status for bill table
             update_query = "UPDATE Bills SET payment_STATUS = (%s) WHERE billing_month = %s"
             mycursor.execute(update_query,("PARTIAL PAYMENT",bill_month))
             mydb.commit()
-            time.sleep(3)
+            time.sleep(2)
             print(f"✅ Bill  for {meter_number} | Amount payed: ₦{amount} Payement succesfull")
             generate_reciept(meter_number)    
 
@@ -95,12 +95,12 @@ def pay_card(meter_number):
     
             
             print("processing payment .........")
-            time.sleep(3)
+            time.sleep(1)
             #query that updates status for bill table
             update_query = "UPDATE Bills SET payment_STATUS = (%s) WHERE billing_month = %s"
             mycursor.execute(update_query,("PAYED",bill_month))
             mydb.commit()
-            time.sleep(3)
+            time.sleep(2)
             print(f"✅ Bill  for {meter_number} | Amount payed: ₦{amount} Payement succesfull")
             generate_reciept(meter_number)
 
@@ -159,7 +159,7 @@ def pay_transfer(meter_number):
                 mycursor.execute(update_query,("PAID",month))
 
                 mydb.commit()
-                time.sleep(3)
+                time.sleep(1)
                 print(f"✅ Bill  for {meter_number} | Amount payed: ₦{amount} Payement succesfull")
                 generate_reciept(meter_number) 
             elif amount < totalamonut:
@@ -171,7 +171,7 @@ def pay_transfer(meter_number):
                 update_query = "UPDATE Bills SET payment_STATUS = (%s) WHERE billing_month = %s"
                 mycursor.execute(update_query,("PARTIAL PAYMENT",month))
                 mydb.commit()
-                time.sleep(3)
+                time.sleep(2)
                 print(f"✅ Bill  for {meter_number} | Amount payed: ₦{amount} Payement succesfull")
                 generate_reciept(meter_number)
 
@@ -183,7 +183,7 @@ def pay_transfer(meter_number):
                 update_query = "UPDATE Bills SET payment_STATUS = (%s) WHERE billing_month = %s"
                 mycursor.execute(update_query,("PAID",month))
                 mydb.commit()
-                time.sleep(3)
+                time.sleep(1)
                 print(f"✅ Bill  for {meter_number} | Amount payed: ₦{amount} Payement succesfull")
                 generate_reciept(meter_number)
             else:
