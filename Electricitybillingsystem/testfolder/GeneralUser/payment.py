@@ -196,7 +196,7 @@ def pay_transfer(meter_number = "hel225967"):
 
 
 #generate reciept function
-def generate_reciept(meter_number):
+def generate_reciept(meter_number ):
     query = '''SELECT Customer.fullName, Customer.meter_number, Customer.address,
            Bills.billing_month, Bills.units_used, Bills.total_amount,
            Payments.billing_month, Payments.date_of_payment, Payments.amount_paid,

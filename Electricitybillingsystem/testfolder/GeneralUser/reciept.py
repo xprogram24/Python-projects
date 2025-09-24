@@ -13,7 +13,8 @@ mydb = pymysql.connect(
 )
 
 mycursor = mydb.cursor()
-def quer(meter_number ):
+month = "january"
+def quer(meter_number = "hel225967" ):
     query = '''SELECT Customer.fullName, Customer.meter_number, Customer.address,
            Bills.billing_month, Bills.units_used, Bills.total_amount,
            Payments.billing_month, Payments.date_of_payment, Payments.amount_paid,
@@ -66,5 +67,7 @@ def quer(meter_number ):
     pdf.cell(200,10,"THANK YOU FOR USING E-Electricity ",new_x="LMARGIN", new_y="NEXT",align="L")
     pdf.ln(5)
 
-    pdf.output("report.pdf")
+    pdf.output(f"report {month}.pdf")
     print("saved")
+
+quer()

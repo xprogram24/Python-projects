@@ -25,6 +25,8 @@ def view_payment():
 
 
 def generatepdf():
+    meter_number = input("input meter number")
+    month = input("enter month").lower().strip()
     query = '''SELECT Customer.fullName, Customer.meter_number, Customer.address,
            Bills.billing_month, Bills.units_used, Bills.total_amount,
            Payments.billing_month, Payments.date_of_payment, Payments.amount_paid,
@@ -32,11 +34,11 @@ def generatepdf():
            FROM Customer 
            INNER JOIN Bills ON Customer.customer_id = Bills.customer_id 
            INNER JOIN Payments ON Bills.bill_id = Payments.bill_id 
-           WHERE Customer.meter_number = %s 
-           ORDER BY Payments.date_of_payment DESC LIMIT 1'''
+           WHERE Customer.meter_number = %s AND  Payments.billing_month = %s
+           '''
     
-    meter_number = input("input meter number")
-    mycursor.execute(query,meter_number)
+   
+    mycursor.execute(query,(meter_number,month))
     customer = mycursor.fetchone()
     
     if not customer:
@@ -95,7 +97,7 @@ def tracking():
                         Bills.payment_STATUS
                         FROM Customer INNER JOIN Bills ON 
                         Customer.customer_id = Bills.customer_id 
-                         WHERE Bills.payment_STATUS = "PAYED" '''
+                        WHERE Bills.payment_STATUS = "PAID" '''
         mycursor.execute(view_Query)
         customers = mycursor.fetchall()
         header = ["Full Name","Meter number","Billing Month","units_used","Total Amount (#)","Date","Payment_STATUS"]

@@ -14,7 +14,7 @@ mydb = pymysql.connect(
 
 mycursor = mydb.cursor()
 def quer(meter_number):
-    month = input("enter month").lower().strip()
+    month = input("enter month: ").lower().strip()
     query = '''SELECT Customer.fullName, Customer.meter_number, Customer.address,
            Bills.billing_month, Bills.units_used, Bills.total_amount,
            Payments.billing_month, Payments.date_of_payment, Payments.amount_paid,
@@ -22,8 +22,8 @@ def quer(meter_number):
            FROM Customer 
            INNER JOIN Bills ON Customer.customer_id = Bills.customer_id 
            INNER JOIN Payments ON Bills.bill_id = Payments.bill_id 
-           WHERE Customer.meter_number = %s AND Bills.billing_month = %s 
-           ORDER BY Payments.date_of_payment DESC LIMIT 1'''
+           WHERE Customer.meter_number = %s AND Payments.billing_month = %s 
+           '''
 
     mycursor.execute(query,(meter_number,month))
     customer = mycursor.fetchone()
@@ -67,5 +67,5 @@ def quer(meter_number):
     pdf.cell(200,10,"THANK YOU FOR USING E-Electricity ",new_x="LMARGIN", new_y="NEXT",align="L")
     pdf.ln(5)
 
-    pdf.output("report.pdf")
-    print("saved")
+    pdf.output(f"report {customer[6]}.pdf")
+    print(f"reciept for month {month} saved")
