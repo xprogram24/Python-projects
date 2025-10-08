@@ -1,0 +1,123 @@
+Electricity Billing and payment system
+Introduction
+This system is a python-based billing and payment management application integrated with a MySQL database. it is designed to manage customer bills, process payment, generate receipt an provide administrative reports such as revenue tracking, outstanding balance and monthly usage trend.
+The project demonstrates database connectivity, CRUD operations, data visualization with Tabulate and Receipt generation with fpdf
+
+System Features
+1.	User view
+•	Account Dashboard
+•	View Bills
+•	Make payment
+•	Generate receipt for successful payment
+2.	Admin view
+•	Customer management
+•	Billing management -manage bills 
+•	payment Management – manage payment record
+•	report analysis – view total revenue collected
+Technology stack
+•	programming language: python
+•	Database: MySQL
+•	Dependencies / Libraries Used:
+o	MySQL. Connector – pymysql
+o	Tabulate – for formatted report tables
+o	Decimal – for handling currency values
+o	Datetime – for date time stamp
+o	FPDF – for generating pdf receipt
+o	Hashlib (sha256) – for password encryption
+Database Schema
+•	Customer : customer_id (primary key)
+	meter_number,
+	fullName,
+	address,
+	phoneNumber,
+	email,
+	User_password 
+
+•	Bills: bill_id PRIMARY KEY,
+	customer_id FOREIGN KEY,
+	billing_month,
+	units_used,
+	rate_per_unit,
+	total_amount,
+	Payment_STATUS,
+
+	FOREIGN KEY (customer_id) REFERENCES Customer(customer_id)
+  
+•	Payment : payment_id PRIMARY KEY,
+	bill_id FOREIGN KEY,,
+	date_of_payment,
+	amount_paid,
+	payment_method,
+	billing_month,
+	Payment_STATUS,
+	FOREIGN KEY (bill_id) REFERENCES Bills(bill_id)
+
+•	Admin :   admin_id PRIMARY,
+AdminName FOREIGN KEY,,
+    	email,
+    	admin_password,
+    	role VARCHAR(50) DEFAULT 'admin'
+
+
+Permissions and user: 
+•	Admin : grant all permissions
+•	User : “select “ on customer ,bills, payment ,
+            “update” on bills, customer,		
+	         “insert “ on Payments tables
+
+
+Module overview
+1. Customer Module
+Purpose
+Manages customer records and links each customer to their bills and payments.
+Key Functions
+•	Add Customer: Insert new customer with name and meter number.
+•	Fetch Customer: Retrieve customer details using meter number.
+•	View All Customers: List all customers for admin reference.
+•	Update Customer details : updates a customers details such as name , address, phone number etc
+2. Bill Management Module
+Purpose
+Generates, updates, and tracks customer bills.
+Key Functions
+•	Generate Bill:
+o	Takes units_used × rate_per_unit → total_amount.
+o	Creates a new row in Bills.
+•	Update Bill:
+o	Allows admin to change billing_month or units_used.
+o	Recalculates total_amount automatically.
+•	View Bills :  allows the admin to view all bills ,or unpaid bills
+
+3. Payment Management Module
+Purpose
+Handles customer payments, receipts, and status updates.
+Key Functions
+•	Process Payment:
+o	Confirms if the bill exists and is unpaid.
+o	Inserts payment record in Payments.
+o	Updates bill payment_status.
+o	Supports partial payments (status "partial").
+
+•	Generate Receipt: prints a formatted receipt 
+•	Prevent Duplicate Payments:
+
+	Check if billing_month already marked as "paid" before inserting a new payment.
+•	Track Bills:
+o	Query bills with payment_status (unpaid, paid, partial).
+o	Display pending bills per customer.
+
+
+4. Report Analysis Module
+Purpose
+Generates admin insights into revenue, debts, and usage trends.
+Key Functions
+•	Total Revenue
+o	Shows all money collected.
+•	Outstanding Balance
+o	Shows all pending bills.
+•	Monthly Usage Trend
+o	Group bills by month → track consumption + revenue trends.
+
+Known Issues
+•	Admin may not see updates instantly 
+•	Console may not support emojis --- Remove or replace them.
+
